@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Игровой сервер Minecraft</title>
+  <meta name="description" content="Донат-магазин и сообщество игрового сервера Minecraft: привилегии, кейсы и валюта. Мгновенная выдача после оплаты.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===== Шапка ===== -->
+  <header class="topbar" id="top">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top">
+        <span class="logo">⛏</span>
+        <span data-brand>ВАШ СЕРВЕР</span>
+      </a>
+
+      <nav class="nav" id="nav"></nav>
+
+      <div class="topbar-right">
+        <a class="social only-desktop" data-discord target="_blank" rel="noopener" title="Discord" aria-label="Discord"><span data-icon="discord"></span></a>
+        <a class="social only-desktop" data-telegram target="_blank" rel="noopener" title="Telegram" aria-label="Telegram"><span data-icon="telegram"></span></a>
+        <button class="cart-btn" data-open-cart aria-label="Корзина">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></svg>
+          <span class="cart-count" data-cart-count>0</span>
+          <span class="cart-total" data-cart-total>0 ₽</span>
+        </button>
+        <button class="burger" id="burger" aria-label="Меню">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Мобильное меню ===== -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu-panel">
+      <button class="burger close" id="mobile-close" aria-label="Закрыть">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <div id="mobile-nav" style="display:grid;gap:6px"></div>
+    </div>
+  </div>
+
+  <!-- ===== Герой ===== -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge" id="hero-badge"></span>
+        <h1 id="hero-title"></h1>
+        <p class="lead" id="hero-subtitle"></p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#shop" id="hero-primary">В магазин</a>
+          <button class="btn" data-copy-ip id="hero-secondary"></button>
+        </div>
+        <div class="hero-stats" id="hero-stats"></div>
+      </div>
+      <div class="hero-card">
+        <div class="avatar" id="hero-avatar">??</div>
+        <div class="muted" style="font-size:14px">IP для подключения</div>
+        <div class="ip-box">
+          <code id="hero-ip">play.yourserver.ru</code>
+          <button class="btn btn-sm" data-copy-ip>
+            <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            Копировать
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Онлайн и подключение ===== -->
+  <section class="section" id="online">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="online-title">Подключение</h2>
+        <p id="online-subtitle"></p>
+      </div>
+      <div class="online-grid">
+        <div class="panel online-chart">
+          <div class="muted" style="font-size:14px">Онлайн за сутки</div>
+          <div class="bars" id="bars"></div>
+          <div class="online-numbers">
+            <div class="n"><b id="online-current">0</b><span>сейчас онлайн</span></div>
+            <div class="n"><b id="online-avg">0</b><span>средний за сутки</span></div>
+            <div class="n"><b id="online-max">0</b><span>рекорд за всё время</span></div>
+          </div>
+        </div>
+        <div class="panel connect-panel">
+          <div class="muted" style="font-size:14px">Адрес сервера</div>
+          <div class="connect-ip">
+            <code id="online-ip">play.yourserver.ru</code>
+            <button class="btn btn-sm btn-primary" data-copy-ip>Копировать IP</button>
+          </div>
+          <div class="muted" style="font-size:14px">Мы в соцсетях</div>
+          <div style="display:flex;gap:10px">
+            <a class="btn" data-discord target="_blank" rel="noopener">Discord ↗</a>
+            <a class="btn" data-telegram target="_blank" rel="noopener">Telegram ↗</a>
+            <a class="btn" data-support target="_blank" rel="noopener">Поддержка ↗</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Недавние покупки + акция ===== -->
+  <section class="section" style="padding-top:0">
+    <div class="container" style="display:grid;gap:22px">
+      <div class="sale" id="sale">
+        <div>
+          <h3 id="sale-title">Распродажа</h3>
+          <div class="muted" style="font-size:14px">Цены вернутся к обычным после окончания таймера</div>
+        </div>
+        <div class="timer">
+          <div class="unit"><b id="t-h">00</b><span>ЧАС</span></div>
+          <div class="unit"><b id="t-m">00</b><span>МИН</span></div>
+          <div class="unit"><b id="t-s">00</b><span>СЕК</span></div>
+        </div>
+      </div>
+
+      <div class="panel" style="padding:22px">
+        <h3 style="margin:0 0 14px;font-size:20px">Недавние покупки</h3>
+        <div class="feed" id="feed"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Магазин ===== -->
+  <section class="section" id="shop">
+    <div class="container">
+      <div class="shop-head section-head">
+        <div>
+          <h2 id="shop-title">Магазин</h2>
+          <p id="shop-subtitle"></p>
+        </div>
+      </div>
+
+      <div class="modes-tabs" id="mode-tabs"></div>
+      <div class="cats" id="cats"></div>
+      <div class="products" id="products"></div>
+    </div>
+  </section>
+
+  <!-- ===== Топ игроков ===== -->
+  <section class="section" id="top-players">
+    <div class="container">
+      <div class="section-head">
+        <h2>Богатейшие игроки сервера</h2>
+        <p>Топ-10 по сумме покупок за всё время</p>
+      </div>
+      <div class="podium" id="podium"></div>
+      <div class="leaderboard" id="leaderboard"></div>
+    </div>
+  </section>
+
+  <!-- ===== Правила и партнёрка ===== -->
+  <section class="section" id="rules">
+    <div class="container info-grid">
+      <div class="info-card">
+        <h3 id="rules-title"></h3>
+        <div class="sub" id="rules-sub"></div>
+        <p id="rules-text"></p>
+        <div class="rules-list" id="rules-list"></div>
+        <p class="muted" id="rules-note"></p>
+        <a class="btn btn-primary" data-support target="_blank" rel="noopener" style="margin-top:16px">Открыть правила через поддержку</a>
+      </div>
+
+      <div class="info-card" id="partners">
+        <h3 id="partners-title"></h3>
+        <div class="sub" id="partners-sub"></div>
+        <p id="partners-text"></p>
+        <div class="domain-example" id="partners-example"></div>
+        <div class="perks" id="partners-perks"></div>
+        <a class="btn btn-primary" data-support target="_blank" rel="noopener">Занять свой домен</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="section" style="padding-top:0">
+    <div class="container">
+      <div class="cta-block">
+        <span class="badge"><span class="dot"></span>Сервер открыт · заходи прямо сейчас</span>
+        <h2>Дом всегда ждёт твоего возвращения</h2>
+        <p>Тебя уже ждут друзья, честная игра и победы, которые останутся с тобой навсегда.</p>
+        <div class="cta-ip">
+          <span class="muted" style="font-size:14px">IP сервера</span>
+          <code id="cta-ip">play.yourserver.ru</code>
+          <button class="btn btn-sm" data-copy-ip>Скопировать</button>
+        </div>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="#shop">В магазин</a>
+          <a class="btn" data-discord target="_blank" rel="noopener">Discord ↗</a>
+          <a class="btn" data-telegram target="_blank" rel="noopener">Telegram ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Футер ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="brand" style="margin-bottom:12px">
+            <span class="logo">⛏</span>
+            <span data-brand>ВАШ СЕРВЕР</span>
+          </div>
+          <p class="muted" style="font-size:14px;max-width:280px">Игровое сообщество и донат-магазин. Все покупки выдаются мгновенно и остаются после вайпов.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Навигация</h4>
+          <div id="footer-links"></div>
+        </div>
+        <div class="footer-col">
+          <h4>Контакты</h4>
+          <a data-support target="_blank" rel="noopener">Тех. поддержка</a>
+          <a data-telegram target="_blank" rel="noopener">Telegram</a>
+          <a data-discord target="_blank" rel="noopener">Discord</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© <span data-year>2026</span> <span data-brand-short>YOURNAME</span>. <span id="foot-copy"></span><br><span data-footer-note></span></div>
+        <div class="pay-icons"><span>МИР</span><span>Visa</span><span>Mastercard</span><span>СБП</span></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Корзина ===== -->
+  <div class="overlay" id="cart">
+    <aside class="drawer">
+      <div class="drawer-head">
+        <h3>Корзина</h3>
+        <button class="burger" data-close-cart aria-label="Закрыть">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <div class="drawer-body" id="cart-body"></div>
+      <div class="drawer-foot">
+        <div class="summary-row"><span>Без скидки</span><span id="sum-old">0 ₽</span></div>
+        <div class="summary-row"><span>Ваша выгода</span><span id="sum-save" style="color:#7ee2a1">−0 ₽</span></div>
+        <div class="summary-row total"><span>К оплате</span><span id="sum-total">0 ₽</span></div>
+        <button class="btn btn-primary btn-block" id="cart-checkout" style="margin-top:14px">Перейти к оплате</button>
+        <p class="muted" style="font-size:12px;text-align:center;margin:10px 0 0">Выдача мгновенно · покупки остаются после вайпов</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ===== Оформление заказа ===== -->
+  <div class="modal" id="checkout">
+    <div class="modal-box">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>Оформление заказа</h3>
+        <button class="burger" data-close-checkout aria-label="Закрыть">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <p class="muted" style="font-size:14px;margin:6px 0 0">1 · Данные для выдачи</p>
+
+      <div class="field">
+        <label for="in-nick">Никнейм в игре</label>
+        <input id="in-nick" type="text" placeholder="Например: Steve" autocomplete="off">
+        <div class="err" id="err-nick">Введите корректный ник (минимум 3 символа)</div>
+      </div>
+      <div class="field">
+        <label for="in-email">Email для чека</label>
+        <input id="in-email" type="email" placeholder="you@example.com" autocomplete="off">
+        <div class="err" id="err-email">Введите корректный email</div>
+      </div>
+
+      <p class="muted" style="font-size:14px;margin:22px 0 0">2 · Способ оплаты</p>
+      <div class="methods">
+        <div class="method on"><span>Банковская карта</span><span class="fee">МИР · Visa · MC</span></div>
+        <div class="method"><span>СБП</span><span class="fee">по QR-коду</span></div>
+        <div class="method"><span>Криптовалюта</span><span class="fee">USDT</span></div>
+      </div>
+
+      <div class="summary-row total" style="margin-top:20px"><span>К оплате</span><span id="checkout-total">0 ₽</span></div>
+      <button class="btn btn-primary btn-block" id="submit-order" style="margin-top:8px">Оплатить</button>
+      <p class="muted" style="font-size:12px;text-align:center;margin:12px 0 0">
+        Это демо-форма. Для приёма реальных платежей подключите платёжную систему (например, ЮKassa) в <code>js/app.js</code>.
+      </p>
+    </div>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
