@@ -252,17 +252,31 @@
     </aside>
   </div>
 
+  <!-- ===== Карточка товара ===== -->
+  <div class="modal" id="detail">
+    <div class="modal-box" id="detail-box"></div>
+  </div>
+
   <!-- ===== Оформление заказа ===== -->
   <div class="modal" id="checkout">
-    <div class="modal-box">
-      <div style="display:flex;justify-content:space-between;align-items:center">
-        <h3>Оформление заказа</h3>
+    <div class="modal-box modal-wide">
+      <div class="modal-head">
+        <h3>Оформление заказа <span class="badge-safe">Защищено</span></h3>
         <button class="burger" data-close-checkout aria-label="Закрыть">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
         </button>
       </div>
-      <p class="muted" style="font-size:14px;margin:6px 0 0">1 · Данные для выдачи</p>
 
+      <p class="muted" style="font-size:14px;margin:8px 0 6px">Ваш заказ</p>
+      <div class="order-list" id="checkout-items"></div>
+
+      <div class="promo-box">
+        <input id="promo-input" type="text" placeholder="Промокод" autocomplete="off">
+        <button class="btn btn-sm" id="promo-apply">Применить</button>
+      </div>
+      <div id="promo-msg" class="muted" style="font-size:13px;margin-top:6px;min-height:16px"></div>
+
+      <p class="muted" style="font-size:14px;margin:14px 0 0">1 · Данные для выдачи</p>
       <div class="field">
         <label for="in-nick">Никнейм в игре</label>
         <input id="in-nick" type="text" placeholder="Например: Steve" autocomplete="off">
@@ -274,19 +288,31 @@
         <div class="err" id="err-email">Введите корректный email</div>
       </div>
 
-      <p class="muted" style="font-size:14px;margin:22px 0 0">2 · Способ оплаты</p>
-      <div class="methods">
-        <div class="method on"><span>Банковская карта</span><span class="fee">МИР · Visa · MC</span></div>
-        <div class="method"><span>СБП</span><span class="fee">по QR-коду</span></div>
-        <div class="method"><span>Криптовалюта</span><span class="fee">USDT</span></div>
+      <p class="muted" style="font-size:14px;margin:18px 0 0">2 · Способ оплаты</p>
+      <div class="methods" id="pay-methods"></div>
+
+      <div class="notice" id="min-notice" style="display:none"></div>
+
+      <div class="totals">
+        <div class="summary-row"><span>Товары</span><span id="co-subtotal">0 ₽</span></div>
+        <div class="summary-row" id="co-volume-row" style="display:none"><span class="lbl"></span><span class="val" style="color:#7ee2a1"></span></div>
+        <div class="summary-row" id="co-promo-row" style="display:none"><span class="lbl"></span><span class="val" style="color:#7ee2a1"></span></div>
+        <div class="summary-row" id="co-fee-row" style="display:none"><span class="lbl"></span><span class="val"></span></div>
+        <div class="summary-row"><span>Бонус</span><span id="co-tokens" style="color:#7ee2a1"></span></div>
+        <div class="summary-row total"><span>К оплате</span><span id="co-total">0 ₽</span></div>
+        <div class="muted" id="co-savings" style="font-size:13px;text-align:right"></div>
       </div>
 
-      <div class="summary-row total" style="margin-top:20px"><span>К оплате</span><span id="checkout-total">0 ₽</span></div>
-      <button class="btn btn-primary btn-block" id="submit-order" style="margin-top:8px">Оплатить</button>
+      <button class="btn btn-primary btn-block" id="submit-order" style="margin-top:14px">Оплатить</button>
       <p class="muted" style="font-size:12px;text-align:center;margin:12px 0 0">
-        Это демо-форма. Для приёма реальных платежей подключите платёжную систему (например, ЮKassa) в <code>js/app.js</code>.
+        Демо-форма. Для приёма реальных платежей подключите платёжную систему (например, ЮKassa) в <code>js/app.js</code>.
       </p>
     </div>
+  </div>
+
+  <!-- ===== Заказ оформлен ===== -->
+  <div class="modal" id="success">
+    <div class="modal-box" id="success-box"></div>
   </div>
 
   <div class="toasts" id="toasts"></div>
